@@ -1,23 +1,68 @@
-import logo from './logo.svg';
+
 import './App.css';
+
+
+const subjects = [
+
+  "Books",
+  "Hobbies",
+  "Work",
+  "Speadreading",
+  "Juggling"
+
+];
+
+const sObjects = subjects.map ((subject,i) => ({id:i,title:subject}));
+
+
+//subjects.map((subject) => console.log(subject));
+
+function Header(props){
+
+  return(
+    <header>
+      <h1>{props.name}</h1>
+    </header>
+    
+  );
+}
+
+function Main(props) {
+  return(
+    <section>
+      <p>This is my personal {props.adjective} site</p>
+      <ul style={{textAlign:"left"}}>
+      {props.subjects.map((subject) => (
+            
+            <li key={subject.id}>{subject.title}</li>
+
+          ))}
+      </ul>
+    </section>
+  );
+
+}
+
+function Footer(props) {
+  return (
+    <footer>
+      <p>Created By SoftCloud. Copyright {props.year}</p>
+    </footer>
+  );
+
+}
+
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Header name="Ahmad Farhat" />
+       <Main adjective="amazing" subjects={sObjects} />
+       <Footer year={new Date().getFullYear()} />
+
     </div>
   );
 }
